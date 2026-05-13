@@ -23,7 +23,7 @@ const defaultTheme = createTheme();
 
 export default function Authentication() {
 
-    
+
 
     const [username, setUsername] = React.useState();
     const [password, setPassword] = React.useState();
@@ -76,19 +76,33 @@ export default function Authentication() {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+                        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?q=80&w=2070&auto=format&fit=crop)',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        color: 'white',
+                        textAlign: 'center',
+                        padding: 4
                     }}
-                />
+                >
+                    <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: '700' }}>
+                        VisionMeet
+                    </Typography>
+                    <Typography variant="h5" sx={{ maxWidth: '80%' }}>
+                        Connect with your team and friends globally with crystal clear video quality.
+                    </Typography>
+                </Grid>
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                     <Box
                         sx={{
-                            my: 8,
-                            mx: 4,
+                            my: { xs: 4, md: 8 },
+                            mx: { xs: 2, md: 4 },
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',

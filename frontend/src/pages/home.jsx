@@ -13,7 +13,7 @@ function HomeComponent() {
     const [meetingCode, setMeetingCode] = useState("");
 
 
-    const {addToUserHistory} = useContext(AuthContext);
+    const { addToUserHistory } = useContext(AuthContext);
     let handleJoinVideoCall = async () => {
         await addToUserHistory(meetingCode)
         navigate(`/${meetingCode}`)
@@ -26,20 +26,18 @@ function HomeComponent() {
 
                 <div style={{ display: "flex", alignItems: "center" }}>
 
-                    <h2>Apna Video Call</h2>
+                    <h2>VisionMeet</h2>
                 </div>
 
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    <IconButton onClick={
-                        () => {
-                            navigate("/history")
-                        }
-                    }>
-                        <RestoreIcon />
-                    </IconButton>
-                    <p>History</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                    <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={() => navigate("/history")}>
+                        <IconButton>
+                            <RestoreIcon />
+                        </IconButton>
+                        <p>History</p>
+                    </div>
 
-                    <Button onClick={() => {
+                    <Button variant="outlined" color="error" onClick={() => {
                         localStorage.removeItem("token")
                         navigate("/auth")
                     }}>
@@ -56,7 +54,7 @@ function HomeComponent() {
                     <div>
                         <h2>Providing Quality Video Call Just Like Quality Education</h2>
 
-                        <div style={{ display: 'flex', gap: "10px" }}>
+                        <div style={{ display: 'flex', gap: "10px", marginTop: "20px" }}>
 
                             <TextField onChange={e => setMeetingCode(e.target.value)} id="outlined-basic" label="Meeting Code" variant="outlined" />
                             <Button onClick={handleJoinVideoCall} variant='contained'>Join</Button>

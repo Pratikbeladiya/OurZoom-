@@ -57,6 +57,7 @@ export default function VideoMeetComponent() {
     const videoRef = useRef([])
 
     let [videos, setVideos] = useState([])
+    let [selectedVideo, setSelectedVideo] = useState(null);
 
     // TODO
     // if(isChrome() === false) {
@@ -439,7 +440,7 @@ export default function VideoMeetComponent() {
         // this.setState({ message: "", sender: username })
     }
 
-    
+
     let connect = () => {
         setAskForUsername(false);
         getMedia();
@@ -490,7 +491,7 @@ export default function VideoMeetComponent() {
                             </div>
 
                             <div className={styles.chattingArea}>
-                                <TextField value={message} onChange={(e) => setMessage(e.target.value)} id="outlined-basic" label="Enter Your chat" variant="outlined" />
+                                <TextField style={{ flex: 1 }} value={message} onChange={(e) => setMessage(e.target.value)} id="outlined-basic" label="Enter Your chat" variant="outlined" />
                                 <Button variant='contained' onClick={sendMessage}>Send</Button>
                             </div>
 
@@ -504,7 +505,7 @@ export default function VideoMeetComponent() {
                             {(video === true) ? <VideocamIcon /> : <VideocamOffIcon />}
                         </IconButton>
                         <IconButton onClick={handleEndCall} style={{ color: "red" }}>
-                            <CallEndIcon  />
+                            <CallEndIcon />
                         </IconButton>
                         <IconButton onClick={handleAudio} style={{ color: "white" }}>
                             {audio === true ? <MicIcon /> : <MicOffIcon />}
@@ -537,6 +538,14 @@ export default function VideoMeetComponent() {
                                         }
                                     }}
                                     autoPlay
+                                    className={selectedVideo === video.socketId ? styles.enlarged : ""}
+                                    onClick={() => {
+                                        if (selectedVideo === video.socketId) {
+                                            setSelectedVideo(null);
+                                        } else {
+                                            setSelectedVideo(video.socketId);
+                                        }
+                                    }}
                                 >
                                 </video>
                             </div>
